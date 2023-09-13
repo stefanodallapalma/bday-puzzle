@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crossword Puzzle</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .crossword-container {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        .fillable {
+            background-color: white; /* Fillable cells are white (or highlighted) */
+        }
+
+        .non-fillable {
+            background-color: #9c9999; /* Non-fillable cells are dark grey */
+            color: white; /* Text in non-fillable cells is white */
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+
+        .redeem-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 300px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .video-container {
+            display: none;
+            position: absolute; /* Set the position to absolute */
+            top: 0; /* Align to the top of the viewport */
+            left: 0; /* Align to the left of the viewport */
+            height: calc(100vh - 100px); /* Adjusted the height to fit within the viewport */
+            width: 100%; /* Take up the full width of the viewport */
+        }
+
+        video {
+            max-height: 100%; /* Ensure the video fits within the container */
+            width: auto;
+            margin: 0 auto; /* Center the video horizontally */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video container -->
+    <div class="video-container" id="videoDiv">
+        <video controls>
+            <source src="rickrolled.mp4" type="video/mp4">
+        </video>
+        <div class="crossword-container">
+            <h1>Congrats! 🍾 You've been Rickrolled! 💃🕺</h1>
+        </div>
+    </div>
+    <div class="crossword-container" id="puzzle">
+        <h1>Happy birthday, Carianne! Your gift is waiting for you! 🎁 </h1>
+        <table>
+            <tr id="rick">
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="non-fillable"></td>
+            </tr>
+            <tr>
+                <td class="non-fillable"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+            </tr>
+            <tr>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+            </tr>
+            <tr>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+            </tr>
+            <tr>
+                <td class="non-fillable"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+            </tr>
+            <tr>
+                <td class="non-fillable"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="fillable highlight" contenteditable="true"></td>
+                <td class="fillable" contenteditable="true"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+                <td class="non-fillable"></td>
+            </tr>
+        </table>
+
+        <p>1. The name of your favorite person</p>
+        <p>2. It's better on paper than in digital</p>
+        <p>3. LOL</p>
+        <p>4. I had to ____ to lose it all ♪♫♪ But in the end, it doesn't even matter ♪♫♪</p>
+        <p>5. The best academy </p>
+        <p>6. A common abbreviation of education</p>
+    </div>
+
+    <div class="redeem-container">
+        <input type="text" placeholder="Insert code to redeem your gift">
+        <button id="redeemButton">Redeem</button>
+    </div>
+
+    <script>
+        // Function to redeem code (you can implement your logic here)
+        document.getElementById('redeemButton').addEventListener('click', function() {
+            const codeInput = document.querySelector('input[type="text"]').value;
+
+            if (codeInput.toLowerCase() === 'rolled'){
+                const videoDiv = document.getElementById('videoDiv');
+                videoDiv.style.display = 'block'; // Show the video container
+                const video = videoDiv.querySelector('video');
+                video.play();
+
+                const puzzle = document.getElementById('puzzle');
+                puzzle.style.display = 'none'; // Show the video container
+                // const tableRow = document.getElementById('rick');
+                // const tableCells = tableRow.querySelectorAll('.fillable');
+
+                // tableCells.forEach(function(cell) {
+                //     cell.style.backgroundColor = '#00ff22';
+                // });
+        
+                // const highlightElements = document.querySelectorAll('.highlight');
+                // highlightElements.forEach(function(element) {
+                //     element.style.backgroundColor = '#00ff22';
+                // });
+            }
+        });
+    </script>
+</body>
+</html>
