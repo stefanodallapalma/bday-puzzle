@@ -75,6 +75,25 @@
             margin: 0 auto; /* Center the video horizontally */
             display: block;
         }
+
+        .moving-image {
+            position: absolute;
+            top: 20%;
+            right: 0; /* Start the image outside the container on the right */
+            width: 300px; /* Adjust the width and height as needed */
+            height: 300px;
+            animation: moveImage 5s linear infinite; /* Customize the animation duration and timing */
+        }
+
+        /* Define the animation keyframes */
+        @keyframes moveImage {
+            0% {
+                right: 0; /* Start position (fully on the right) */
+            }
+            100% {
+                right: 100%; /* End position (fully on the left) */
+            }
+        }
     </style>
 </head>
 <body>
@@ -83,6 +102,8 @@
         <video controls>
             <source src="rickrolled.mp4" type="video/mp4">
         </video>
+        <img src="./trollface.png" alt="Moving Image" class="moving-image" id="trollface">
+        <!-- <img src="./trollface.png" alt="Moving Image" class="moving-image"> -->
         <div class="crossword-container">
             <h1>Congrats! 🍾 You've been Rickrolled! 💃🕺</h1>
         </div>
@@ -160,6 +181,37 @@
     </div>
 
     <script>
+        function displayImagesSequentially() {
+            const imageUrls = [
+                './trollface.png',
+                './trollface-open.png',
+                './trollgar.png',
+                './pikachu.png',
+                './squirtle.png',
+                './bulba.png',
+                './charmander.png',
+                './mario.png',
+                './luigi.png',
+                './peach.gif',
+                // Add more image URLs as needed
+            ];
+            
+            const trollface = document.getElementById('trollface');
+            let i = 0;
+
+            setTimeout(function switchImage() {
+                i += 1;
+
+                if (i >= 9){
+                    trollface.src = imageUrls[9];
+                } else {
+                    trollface.src = imageUrls[i % 10];
+                }
+
+                setTimeout(switchImage, 5000);
+            }, 5000);
+        };
+
         // Function to redeem code (you can implement your logic here)
         document.getElementById('redeemButton').addEventListener('click', function() {
             const codeInput = document.querySelector('input[type="text"]').value;
@@ -172,17 +224,9 @@
 
                 const puzzle = document.getElementById('puzzle');
                 puzzle.style.display = 'none'; // Show the video container
-                // const tableRow = document.getElementById('rick');
-                // const tableCells = tableRow.querySelectorAll('.fillable');
 
-                // tableCells.forEach(function(cell) {
-                //     cell.style.backgroundColor = '#00ff22';
-                // });
-        
-                // const highlightElements = document.querySelectorAll('.highlight');
-                // highlightElements.forEach(function(element) {
-                //     element.style.backgroundColor = '#00ff22';
-                // });
+                // Start displaying images sequentially
+                displayImagesSequentially();
             }
         });
     </script>
